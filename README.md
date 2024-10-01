@@ -1,87 +1,56 @@
-# Alphabet Soup Charity Funding Predictor
+# Alphabet Soup Charity Deep Learning Challenge
 
 ## Overview
-This project aims to create a binary classifier using a deep learning neural network model that can predict whether applicants funded by the nonprofit organization, Alphabet Soup, will succeed in their ventures. The classifier is built using a dataset of over 34,000 organizations that have received funding, and it employs machine learning techniques to predict the success of future applicants.
+This project aims to build and optimize a neural network model that predicts whether applicants funded by Alphabet Soup will succeed in their ventures. The model is built and optimized using TensorFlow, Keras, and Keras Tuner for hyperparameter tuning.
 
-## Purpose
-The nonprofit foundation Alphabet Soup wants a tool to help select the applicants for funding who have the best chance of success. By building a binary classifier, the foundation will be able to make data-driven decisions on funding, improving the overall success rate of their investments.
+## Project Files
 
-## Dataset
-The dataset contains information on various organizations, including details about the application type, affiliation, classification, income, and special considerations. The main target of the model is the `IS_SUCCESSFUL` column, which indicates whether an organization succeeded after receiving funding.
+### 1. `AlphabetSoupCharity.ipynb`
+This notebook contains the initial implementation of the neural network model used to predict whether an organization will successfully use the funding provided by Alphabet Soup. It includes the data preprocessing, model training, and evaluation steps.
 
-### Dataset Columns:
-- **EIN** and **NAME**: Identification columns (removed during preprocessing).
-- **APPLICATION_TYPE**: The type of application submitted.
-- **AFFILIATION**: Sector affiliation of the organization.
-- **CLASSIFICATION**: Government classification of the organization.
-- **USE_CASE**: Reason for funding.
-- **ORGANIZATION**: Type of organization.
-- **STATUS**: Organization’s current status (active or inactive).
-- **INCOME_AMT**: Income classification of the organization.
-- **SPECIAL_CONSIDERATIONS**: Special considerations for the application.
-- **ASK_AMT**: Amount of funding requested.
-- **IS_SUCCESSFUL**: Binary target column indicating whether the funding was successful.
+### 2. `AlphabetSoupCharity_Optimization.ipynb`
+This notebook is an extension of the initial model, where various optimization techniques are applied, including the addition of more layers, increased epochs, and hyperparameter tuning using Keras Tuner.
 
-### Preprocess the Data
-1. **Data Preprocessing**:
-   - Read the data from the `charity_data.csv` file.
-   - Remove unnecessary columns such as `EIN` and `NAME`.
-   - Identify the target variable (`IS_SUCCESSFUL`) and feature variables.
-   - Combine low-frequency categorical values into a new value labeled `Other` to reduce noise.
-   - Use `pd.get_dummies()` to convert categorical data into numerical form.
-   - Split the dataset into training and testing datasets using `train_test_split`.
-   - Apply `StandardScaler` to scale the feature variables for better model performance.
+### 3. `AlphabetSoupCharity.h5`
+This is the saved model in HDF5 format after training the initial neural network. You can load this file to make predictions or further optimize the model.
 
-### Compile, Train, and Evaluate the Model
-1. **Model Definition**:
-   - Use TensorFlow/Keras to design a neural network model for binary classification.
-   - Compile the model using the `binary_crossentropy` loss function, the `adam` optimizer, and accuracy as the evaluation metric.
-   
-2. **Training**:
-   - Train the model using the scaled training data.
-   - Include a callback to save the model weights every five epochs.
-   - Evaluate the model using the test data to determine its accuracy and loss.
+### 4. `AlphabetSoupCharity_Optimization.h5`
+This is the saved model in HDF5 format after applying hyperparameter tuning and optimization to the initial model. You can load this file to use the optimized model for making predictions or further analysis.
 
-3. **Output**:
-   - Save the model in HDF5 format with the name `AlphabetSoupCharity.h5`.
+### 5. `Alphabet Soup Charity Analysis Report.docx`
+This document contains a detailed analysis of the deep learning model's performance, comparing different optimization techniques, such as hyperparameter tuning and model architecture adjustments.
 
-### Optimize the Model
-1. **Optimization Strategies**:
-   - Adjust the input data by dropping columns or binning values differently.
-   - Add more neurons or hidden layers to increase the model’s capacity.
-   - Experiment with different activation functions for better performance.
-   - Increase or decrease the number of epochs to fine-tune the model’s training.
+### 6. `tune_dir/`
+This directory contains the output files from the hyperparameter tuning process using Keras Tuner. It includes the best model configurations found during the tuning process.
 
-    1.    
-2. **Goal**:
-   - The goal is to achieve an accuracy of over 75%. The model can be optimized using any of the strategies above. Results are saved as `AlphabetSoupCharity_Optimization.h5`.
+### 7. `checkpoint/` and `checkpoints/`
+These directories store model checkpoints created during the training process. The checkpoints can be used to restore the model at a particular point during training or to continue training from a saved state.
 
-### Step 4: Write a Report on the Neural Network Model
-1. **Overview**: Briefly explain the purpose of the analysis.
-   
-2. **Data Preprocessing**:
-   - **Target**: The `IS_SUCCESSFUL` column.
-   - **Features**: Columns such as `APPLICATION_TYPE`, `AFFILIATION`, `CLASSIFICATION`, etc.
-   - **Removed Variables**: Columns like `EIN` and `NAME`, which are not useful for predictions.
+### 8. `README.md`
+This file provides an overview of the project and explains the contents of each file and folder in the project directory.
 
-3. **Model Training and Evaluation**:
-   - Detail the number of layers, neurons, and activation functions chosen for the model.
-   - Indicate whether the target performance was achieved.
-   - List optimization attempts and their effects on the model's performance.
+## Instructions for Use
 
-4. **Summary**:
-   - Summarize the overall results.
-   - Provide recommendations on how alternative models (e.g., random forest, support vector machines) could potentially improve the prediction accuracy.
+1. **Run the Notebooks**:
+   - Start with `AlphabetSoupCharity.ipynb` to see the initial model and training steps.
+   - Use `AlphabetSoupCharity_Optimization.ipynb` to explore the optimization techniques applied to improve the model's performance.
 
-### Step 5: Finalize and Submit the Project
-1. **Move Files**:
-   - Download the Colab notebooks used during the project.
-   - Place them in local GitHub repository folder.
-   
-2. **Push to GitHub**:
-   - Push the project files to GitHub for final submission.
+2. **Load the Models**:
+   - You can load the saved models (`AlphabetSoupCharity.h5` or `AlphabetSoupCharity_Optimization.h5`) to make predictions using:
+     ```python
+     from tensorflow.keras.models import load_model
+     model = load_model('AlphabetSoupCharity.h5')  # Or load the optimization model
+     ```
 
-## Conclusion
-By creating and optimizing this binary classifier, Alphabet Soup can make better decisions on which applicants to fund, maximizing the success rate of its investments. The model created in this project serves as a foundation for future improvements in the decision-making process.
+3. **Hyperparameter Tuning**:
+   - If you want to run hyperparameter tuning, ensure that you have `Keras Tuner` installed and refer to the `tune_dir/` for the best configurations found during tuning.
 
-This README serves as a guide to understanding and replicating the model development process for predicting applicant success.
+## Model Summary
+
+The project focuses on building a binary classification model using TensorFlow and Keras. The initial model has been improved through several optimization techniques, such as:
+- Binning 'ASK_AMT' column
+- Adding more hidden layers
+- Increasing the number of epochs
+- Hyperparameter tuning using Keras Tuner
+
+The results and observations of the various optimizations are detailed in the **Alphabet Soup Charity Analysis Report.docx** file.
