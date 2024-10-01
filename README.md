@@ -22,9 +22,7 @@ The dataset contains information on various organizations, including details abo
 - **ASK_AMT**: Amount of funding requested.
 - **IS_SUCCESSFUL**: Binary target column indicating whether the funding was successful.
 
-## Instructions
-
-### Step 1: Preprocess the Data
+### Preprocess the Data
 1. **Data Preprocessing**:
    - Read the data from the `charity_data.csv` file.
    - Remove unnecessary columns such as `EIN` and `NAME`.
@@ -34,11 +32,9 @@ The dataset contains information on various organizations, including details abo
    - Split the dataset into training and testing datasets using `train_test_split`.
    - Apply `StandardScaler` to scale the feature variables for better model performance.
 
-### Step 2: Compile, Train, and Evaluate the Model
+### Compile, Train, and Evaluate the Model
 1. **Model Definition**:
    - Use TensorFlow/Keras to design a neural network model for binary classification.
-   - The input layer is defined based on the number of features.
-   - Add hidden layers with a suitable number of neurons and activation functions.
    - Compile the model using the `binary_crossentropy` loss function, the `adam` optimizer, and accuracy as the evaluation metric.
    
 2. **Training**:
@@ -49,13 +45,14 @@ The dataset contains information on various organizations, including details abo
 3. **Output**:
    - Save the model in HDF5 format with the name `AlphabetSoupCharity.h5`.
 
-### Step 3: Optimize the Model
+### Optimize the Model
 1. **Optimization Strategies**:
    - Adjust the input data by dropping columns or binning values differently.
    - Add more neurons or hidden layers to increase the model’s capacity.
    - Experiment with different activation functions for better performance.
    - Increase or decrease the number of epochs to fine-tune the model’s training.
-   
+
+    1.    
 2. **Goal**:
    - The goal is to achieve an accuracy of over 75%. The model can be optimized using any of the strategies above. Results are saved as `AlphabetSoupCharity_Optimization.h5`.
 
