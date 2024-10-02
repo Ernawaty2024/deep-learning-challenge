@@ -26,9 +26,6 @@ This directory contains the output files from the hyperparameter tuning process 
 ### 7. `checkpoint/` and `checkpoints/`
 These directories store model checkpoints created during the training process. The checkpoints can be used to restore the model at a particular point during training or to continue training from a saved state.
 
-### 8. `README.md`
-This file provides an overview of the project and explains the contents of each file and folder in the project directory.
-
 ## Instructions for Use
 
 1. **Run the Notebooks**:
